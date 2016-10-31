@@ -1,0 +1,23 @@
+{
+  "name": "fetlifejs",
+  "version": "1.0.0",
+  "description": "Fetlife api wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickgirard/fetlifejs.git"
+  },
+  "keywords": [
+    "fetlife",
+    "api"
+  ],
+  "author": "Erick Girard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erickgirard/fetlifejs/issues"
+  },
+  "homepage": "https://github.com/erickgirard/fetlifejs#readme"
+}
