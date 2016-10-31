@@ -1,8 +1,8 @@
 # Fetlife API documentation
 
 ## Login
-**Verb:** `POST`
-**Path:** `/api/oauth/token`
+**Verb:** `POST`  
+**Path:** `/api/oauth/token`  
 **Params:**
  - clientId: `string`
  - client_secret: `string`
@@ -16,8 +16,8 @@ Call<Token> login(@Query("client_id") String clientId, @Query("client_secret") S
 ```
 
 ## Refresh Authentication Token
-**Verb:** `POST`
-**Path:** `/api/oauth/token`
+**Verb:** `POST`  
+**Path:** `/api/oauth/token`  
 **Params:**
  - client_id: `string`
  - client_secret: `string`
@@ -33,8 +33,8 @@ Call<Token> refreshToken(@Query("client_id") String clientId, @Field("client_sec
 ```
 
 ## Get User Profile
-**Verb:** `GET`
-**Path:** `/api/v2/me`
+**Verb:** `GET`  
+**Path:** `/api/v2/me`  
 **Headers:**
  - Authorization: `string`
 
@@ -45,8 +45,8 @@ Call<User> getMe(@Header("Authorization") String authHeader);
 ```
 
 ## Get User List of Conversations
-**Verb:** `GET`
-**Path:** `/api/v2/me/conversations`
+**Verb:** `GET`  
+**Path:** `/api/v2/me/conversations`  
 **Headers:**
  - Authorization: `string`
 
@@ -57,8 +57,8 @@ Call<List<Conversation>> getConversations(@Header("Authorization") String authHe
 ```
 
 ## Get User List of Friends
-**Verb:** `GET`
-**Path:** `/api/v2/me/friends`
+**Verb:** `GET`  
+**Path:** `/api/v2/me/friends`  
 **Headers:**
  - Authorization: `string`
 
@@ -69,8 +69,8 @@ Call<List<Friend>> getFriends(@Header("Authorization") String authHeader, @Query
 ```
 
 ## Get User Conversation List of Messages
-**Verb:** `GET`
-**Path:** `/api/v2/me/conversations/{conversationId}/messages`
+**Verb:** `GET`  
+**Path:** `/api/v2/me/conversations/{conversationId}/messages`  
 **Headers:**
  - Authorization: `string`
 
@@ -81,8 +81,8 @@ Call<List<Message>> getMessages(@Header("Authorization") String authHeader, @Pat
 ```
 
 ## Get Member Profile
-**Verb:** `GET`
-**Path:** `/api/v2/members/{memberId}`
+**Verb:** `GET`  
+**Path:** `/api/v2/members/{memberId}`  
 **Headers:**
  - Authorization: `string`
 
@@ -93,8 +93,8 @@ Call<Member> getMember(@Header("Authorization") String authHeader, @Path("member
 ```
 
 ## Reply to Conversation
-**Verb:** `POST`
-**Path:** `/api/v2/me/conversations/{conversationId}/messages`
+**Verb:** `POST`  
+**Path:** `/api/v2/me/conversations/{conversationId}/messages`  
 **Headers:**
  - Authorization: `string`
 
@@ -106,8 +106,8 @@ Call<Message> postMessage(@Header("Authorization") String authHeader, @Path("con
 ```
 
 ## Set Message as Read
-**Verb:** `PUT`
-**Path:** `/api/v2/me/conversations/{conversationId}/messages/read`
+**Verb:** `PUT`  
+**Path:** `/api/v2/me/conversations/{conversationId}/messages/read`  
 **Headers:**
  - Authorization: `string`
 
@@ -119,8 +119,8 @@ Call<ResponseBody> setMessagesRead(@Header("Authorization") String authHeader, @
 ```
 
 ## Create Conversation
-**Verb:** `POST`
-**Path:** `/api/v2/me/conversations`
+**Verb:** `POST`  
+**Path:** `/api/v2/me/conversations`  
 **Headers:**
  - Authorization: `string`
 
@@ -132,8 +132,8 @@ Call<Conversation> postConversation(@Header("Authorization") String authHeader, 
 ```
 
 ## Get User List of Friend Requests
-**Verb:** `GET`
-**Path:** `/api/v2/me/friendrequests`
+**Verb:** `GET`  
+**Path:** `/api/v2/me/friendrequests`  
 **Headers:**
  - Authorization: `string`
 
@@ -144,8 +144,8 @@ Call<List<FriendRequest>> getFriendRequests(@Header("Authorization") String auth
 ```
 
 ## Accept Friend Request
-**Verb:** `PUT`
-**Path:** `/api/v2/me/friendrequests/{friendRequestId}`
+**Verb:** `PUT`  
+**Path:** `/api/v2/me/friendrequests/{friendRequestId}`  
 **Headers:**
  - Authorization: `string`
 
@@ -156,8 +156,8 @@ Call<FriendRequest> acceptFriendRequests(@Header("Authorization") String authHea
 ```
 
 ## Delete Friend Request
-**Verb:** `DELETE`
-**Path:** `/api/v2/me/friendrequests/{friendRequestId}`
+**Verb:** `DELETE`  
+**Path:** `/api/v2/me/friendrequests/{friendRequestId}`  
 **Headers:**
  - Authorization: `string`
 
@@ -168,8 +168,8 @@ Call<FriendRequest> removeFriendRequests(@Header("Authorization") String authHea
 ```
 
 ## Create Friend Request
-**Verb:** `POST`
-**Path:** `/api/v2/me/friendrequests`
+**Verb:** `POST`  
+**Path:** `/api/v2/me/friendrequests`  
 **Headers:**
  - Authorization: `string`
 
@@ -181,8 +181,8 @@ Call<FriendRequest> createFriendRequest(@Header("Authorization") String authHead
 ```
 
 ## Add Picture to User Album
-**Verb:** `GET`
-**Path:** `/api/v2/me/pictures`
+**Verb:** `GET`  
+**Path:** `/api/v2/me/pictures`  
 **Headers:**
  - Authorization: `string`
 
