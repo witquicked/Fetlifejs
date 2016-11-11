@@ -4,7 +4,8 @@
   "description": "Fetlife api wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,17 @@
   "bugs": {
     "url": "https://github.com/erickgirard/fetlifejs/issues"
   },
-  "homepage": "https://github.com/erickgirard/fetlifejs#readme"
+  "homepage": "https://github.com/erickgirard/fetlifejs#readme",
+  "dependencies": {
+    "@types/form-data": "0.0.32",
+    "@types/node": "^6.0.46",
+    "@types/node-fetch": "^1.6.5",
+    "@types/promise": "^7.1.30",
+    "form-data": "^2.1.2",
+    "node-fetch": "^1.6.3",
+    "typescript": "^2.0.6"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  }
 }
