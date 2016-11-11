@@ -2,12 +2,15 @@
 
 ## Login
 **Verb:** `POST`  
-**Path:** `/api/oauth/token`  
-**Params:**
- - clientId: `string`
- - client_secret: `string`
- - redirect_uri: `string`
- - body: `AuthBody`
+**Path:** `/api/oauth/authorize`  
+**Query String:**
+ - clientId: `string` (ID referring to the client application)
+ - client_secret: `string` (Secret key referring to the client application)
+ - redirect_uri: `string` (Uri to be redirected once the login has been successful)
+**Body JSON:** `AuthBody` (authentication body)
+ - username: `string`
+ - password: `string`
+ - grant_type: `string` (Always password)
 
 **Code:**
 ```java
