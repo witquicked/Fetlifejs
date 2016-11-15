@@ -6,7 +6,8 @@
 **Query String:**
  - clientId: `string` (ID referring to the client application)
  - client_secret: `string` (Secret key referring to the client application)
- - redirect_uri: `string` (Uri to be redirected once the login has been successful)
+ - redirect_uri: `string` (Uri to be redirected once the login has been successful)  
+ 
 **Body JSON:** `AuthBody` (authentication body)
  - username: `string`
  - password: `string`
