@@ -1,6 +1,6 @@
-import IMember from './imember';
+import { MemberResponse } from './memberresponse';
 
-interface IConversation {
+export type ConversationResponse = {
     id: string;
 
     subject: string;
@@ -13,7 +13,7 @@ interface IConversation {
 
     has_new_messages: boolean;
 
-    member: IMember;
+    member: MemberResponse;
 
     nickname: string;
 
@@ -23,5 +23,3 @@ interface IConversation {
 
     memberId: string;
 }
-
-export default IConversation;

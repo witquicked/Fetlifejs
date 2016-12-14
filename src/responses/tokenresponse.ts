@@ -1,4 +1,4 @@
-interface ITokenResponse {
+export type TokenResponse = {
     access_token: string,
 
     token_type: string,
@@ -9,5 +9,3 @@ interface ITokenResponse {
 
     created_at: number
 }
-
-export default ITokenResponse;

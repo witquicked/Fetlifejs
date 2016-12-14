@@ -1,6 +1,6 @@
-import IMember from './imember';
+import { MemberResponse } from './memberresponse';
 
-interface IMessage {
+export type MessageResponse = {
     clientId: string;
 
     id: string;
@@ -9,7 +9,7 @@ interface IMessage {
 
     created_at: string
 
-    member: IMember;
+    member: MemberResponse;
 
     is_new: boolean;
 
@@ -25,5 +25,3 @@ interface IMessage {
 
     failed: boolean;
 }
-
-export default IMessage;

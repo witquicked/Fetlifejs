@@ -12,31 +12,31 @@ interface IFetlifeRepository {
     
     refreshToken(refreshToken: string): Promise<Response>;
 
-    getMe(authorisation: string) : Promise<Response>;
+    getMe(tokenType: string, accessToken: string) : Promise<Response>;
 
-    getConversations(authorisation: string, order_by: string, limit: number, page: number): Promise<Response>;
+    getConversations(tokenType: string, accessToken: string, order_by: string, limit: number, page: number): Promise<Response>;
 
-    getConversationMessages(authorisation: string, conversationId: string, sinceMessageId: string, untilMessageId: string, limit: number): Promise<Response>;
+    getConversationMessages(tokenType: string, accessToken: string, conversationId: string, sinceMessageId: string, untilMessageId: string, limit: number): Promise<Response>;
 
-    replyToConversation(authorisation: string, conversationId: string, message: string): Promise<Response>;
+    replyToConversation(tokenType: string, accessToken: string, conversationId: string, message: string): Promise<Response>;
 
-    createConversation(authorisation: string, userId: string, subject: string, message: string): Promise<Response>;
+    createConversation(tokenType: string, accessToken: string, userId: string, subject: string, message: string): Promise<Response>;
 
-    setMessageAsRead(authorisation: string, conversationId: string, ids: Array<string>): Promise<Response>;
+    setMessageAsRead(tokenType: string, accessToken: string, conversationId: string, ids: Array<string>): Promise<Response>;
 
-    getFriends(authorisation: string, limit: number, page: number): Promise<Response>;
+    getFriends(tokenType: string, accessToken: string, limit: number, page: number): Promise<Response>;
 
-    getFriendRequests(authorisation: string, limit: number, page: number): Promise<Response>;
+    getFriendRequests(tokenType: string, accessToken: string, limit: number, page: number): Promise<Response>;
 
-    acceptFriendRequest(authorisation: string, friendRequestId: string): Promise<Response>;
+    acceptFriendRequest(tokenType: string, accessToken: string, friendRequestId: string): Promise<Response>;
 
-    deleteFriendRequest(authorisation: string, friendRequestId: string): Promise<Response>;
+    deleteFriendRequest(tokenType: string, accessToken: string, friendRequestId: string): Promise<Response>;
 
-    createFriendRequest(authorisation: string, memberId: string): Promise<Response>;
+    createFriendRequest(tokenType: string, accessToken: string, memberId: string): Promise<Response>;
 
-    getProfile(authorisation: string, memberId: string): Promise<Response>;
+    getProfile(tokenType: string, accessToken: string, memberId: string): Promise<Response>;
 
-    uploadPicture(authorisation, picture: any, isAvatar: boolean, friendsOnly: boolean, caption: string, isFromUser: boolean): Promise<Response>;
+    uploadPicture(tokenType: string, accessToken, picture: any, isAvatar: boolean, friendsOnly: boolean, caption: string, isFromUser: boolean): Promise<Response>;
 }
 
 export default IFetlifeRepository;

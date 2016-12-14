@@ -1,10 +1,12 @@
 import IFetlifeRepository               from './ifetliferepository';
 import * as Constants                   from '../constants';
 
-import IAuthBody                        from '../requests/iauthbody';
-import ITokenRefreshRequest             from '../requests/itokenrefreshrequest';
-import ILoginRequest                    from '../requests/iloginrequest';
-import ICreateConversationRequest       from '../requests/icreateconversationrequest';
+import { 
+    AuthBodyRequest, 
+    TokenRefreshRequest,
+    LoginRequest,
+    CreateConversationRequest 
+}                                       from '../requests';
 
 import ITokenResponse                   from '../responses/itokenresponse';
 import IUser                            from '../responses/iuser';
@@ -14,6 +16,7 @@ import IFriend                          from '../responses/ifriend';
 import IFriendRequest                   from '../responses/ifriendrequest';
 
 import fetch, { RequestInit, RequestMode, Response } from 'node-fetch';
+import FormData                         from 'form-data';
 
 export default class FetlifeRepository implements IFetlifeRepository {    
     private clientId: string;
@@ -25,7 +28,7 @@ export default class FetlifeRepository implements IFetlifeRepository {
     }
 
     public login(username: string, password: string, redirectUri: string) : Promise<Response> {
-        const body = <IAuthBody>{
+        const body = <AuthBodyRequest>{
             username,
             password,
             grant_type: Constants.GRANT_TYPE_PASSWORD
@@ -38,48 +41,49 @@ export default class FetlifeRepository implements IFetlifeRepository {
     }
 
     public refreshToken(refreshToken: string): Promise<Response> {
-        const body = <ITokenRefreshRequest>{
-            refresh_token: refreshToken,
-            redirect_uri: Constants.REDIRECT_URL,
-            grant_type: Constants.GRANT_TYPE_PASSWORD
-        };
+        let form = new FormData();
         
-        return fetch(`${Constants.BASE_URL}/api/oauth/token?client_id=${this.clientId}&client_secret=${this.clientSecret}`, <RequestInit>{
-            body: JSON.stringify(body),
+        form.append('refresh_token', refreshToken);
+        form.append('client_secret', this.clientSecret);
+        form.append('redirect_uri', Constants.REDIRECT_URL);
+        form.append('grant_type', Constants.GRANT_TYPE_PASSWORD);
+        
+        return fetch(`${Constants.BASE_URL}/api/oauth/token?client_id=${this.clientId}`, <RequestInit>{
+            body: form,
             method: 'POST'
         });
     }
 
-    public getMe(authorisation: string) : Promise<Response> {
+    public getMe(tokenType: string, accessToken: string) : Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me`, <RequestInit>{
             method: 'GET',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public getConversations(authorisation: string, order_by: string, limit: number, page: number): Promise<Response> {
+    public getConversations(tokenType: string, accessToken: string, order_by: string, limit: number, page: number): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me/conversations?order_by=${order_by}&limit=${limit}&page=${page}`, <RequestInit>{
             method: 'GET',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public getConversationMessages(authorisation: string, conversationId: string, sinceMessageId: string, untilMessageId: string, limit: number): Promise<Response> {
+    public getConversationMessages(tokenType: string, accessToken: string, conversationId: string, sinceMessageId: string, untilMessageId: string, limit: number): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me/conversations/${conversationId}/messages?since_id=${sinceMessageId}&until_id=${untilMessageId}&limit={limit}`, <RequestInit>{
             method: 'GET',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public replyToConversation(authorisation: string, conversationId: string, message: string): Promise<Response> {
+    public replyToConversation(tokenType: string, accessToken: string, conversationId: string, message: string): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/conversations/${conversationId}/messages`, <RequestInit>{
             method: 'POST',
-            headers: { Authorization: authorisation },
+            headers: { Authorization: `${tokenType} ${accessToken}` },
             body: message
         });
     }
 
-    public createConversation(authorisation: string, userId: string, subject: string, message: string): Promise<Response> {
+    public createConversation(tokenType: string, accessToken: string, userId: string, subject: string, message: string): Promise<Response> {
         const conversation = {
             user_id: userId,
             subject: subject,
@@ -88,67 +92,67 @@ export default class FetlifeRepository implements IFetlifeRepository {
         
         return fetch(`${Constants.BASE_URL}/api/v2/me/conversations`, <RequestInit>{
             method: 'POST',
-            headers: { Authorization: authorisation },
+            headers: { Authorization: `${tokenType} ${accessToken}` },
             body: JSON.stringify(conversation)
         });
     }
 
-    public setMessageAsRead(authorisation: string, conversationId: string, ids: Array<string>): Promise<Response> {
+    public setMessageAsRead(tokenType: string, accessToken: string, conversationId: string, ids: Array<string>): Promise<Response> {
         const body = { ids }
         
         return fetch(`${Constants.BASE_URL}/api/v2/me/conversations/${conversationId}/messages/read`, <RequestInit>{
             method: 'PUT',
-            headers: { Authorization: authorisation },
+            headers: { Authorization: `${tokenType} ${accessToken}` },
             body: JSON.stringify(body)
         });
     }
 
-    public getFriends(authorisation: string, limit: number, page: number): Promise<Response> {
+    public getFriends(tokenType: string, accessToken: string, limit: number, page: number): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me/friends?limit=${limit}&page=${page}`, <RequestInit>{
             method: 'GET',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public getFriendRequests(authorisation: string, limit: number, page: number): Promise<Response> {
+    public getFriendRequests(tokenType: string, accessToken: string, limit: number, page: number): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me/friendrequests?limit=${limit}&page=${page}`, <RequestInit>{
             method: 'GET',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public acceptFriendRequest(authorisation: string, friendRequestId: string): Promise<Response> {
+    public acceptFriendRequest(tokenType: string, accessToken: string, friendRequestId: string): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me/friendrequests/${friendRequestId}`, <RequestInit>{
             method: 'PUT',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public deleteFriendRequest(authorisation: string, friendRequestId: string): Promise<Response> {
+    public deleteFriendRequest(tokenType: string, accessToken: string, friendRequestId: string): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/me/friendrequests/${friendRequestId}`, <RequestInit>{
             method: 'DELETE',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public createFriendRequest(authorisation: string, memberId: string): Promise<Response> {
+    public createFriendRequest(tokenType: string, accessToken: string, memberId: string): Promise<Response> {
         const body = { memberId };
         
         return fetch(`${Constants.BASE_URL}/api/v2/me/friendrequests`, <RequestInit>{
             method: 'POST',
-            headers: { Authorization: authorisation },
+            headers: { Authorization: `${tokenType} ${accessToken}` },
             body: JSON.stringify(body)
         });
     }
 
-    public getProfile(authorisation: string, memberId: string): Promise<Response> {
+    public getProfile(tokenType: string, accessToken: string, memberId: string): Promise<Response> {
         return fetch(`${Constants.BASE_URL}/api/v2/members/${memberId}`, <RequestInit>{
             method: 'GET',
-            headers: { Authorization: authorisation }
+            headers: { Authorization: `${tokenType} ${accessToken}` }
         });
     }
 
-    public uploadPicture(authorisation, picture: any, isAvatar: boolean, friendsOnly: boolean, caption: string, isFromUser: boolean): Promise<any> {
+    public uploadPicture(tokenType: string, accessToken: string, picture: any, isAvatar: boolean, friendsOnly: boolean, caption: string, isFromUser: boolean): Promise<any> {
         const body = {
             picture,
             caption,
@@ -159,7 +163,7 @@ export default class FetlifeRepository implements IFetlifeRepository {
         
         return fetch(`${Constants.BASE_URL}/api/v2/me/pictures`, <RequestInit>{
             method: 'POST',
-            headers: { Authorization: authorisation },
+            headers: { Authorization: `${tokenType} ${accessToken}` },
             body: JSON.stringify(body)
         });
     }

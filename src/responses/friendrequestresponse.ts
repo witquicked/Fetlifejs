@@ -1,13 +1,13 @@
-import IMember from './imember';
+import { MemberResponse } from './memberresponse';
 
-interface IFriendRequest {
+export type FriendRequestResponse = {
     clientId: string;
 
     id: string;
 
     created_at: string;
 
-    member: IMember;
+    member: MemberResponse;
 
     date: number;
 
@@ -25,5 +25,3 @@ interface IFriendRequest {
 
     avatarLink: string;
 }
-
-export default IFriendRequest;

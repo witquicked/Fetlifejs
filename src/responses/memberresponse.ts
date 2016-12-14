@@ -1,6 +1,6 @@
-import IAvatar from './iavatar';
+import { AvatarResponse } from './avatarresponse';
 
-interface IMember {
+export type MemberResponse = {
     id: string;
 
     nickname: string;
@@ -9,11 +9,9 @@ interface IMember {
 
     meta_line: string;
 
-    avatar: IAvatar;
+    avatar: AvatarResponse;
 
     url: string;
 
     avatarLink: string;
 }
-
-export default IMember;
