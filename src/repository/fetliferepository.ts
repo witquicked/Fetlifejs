@@ -8,13 +8,6 @@ import {
     CreateConversationRequest 
 }                                       from '../requests';
 
-import ITokenResponse                   from '../responses/itokenresponse';
-import IUser                            from '../responses/iuser';
-import IConversation                    from '../responses/iconversation';
-import IMessage                         from '../responses/imessage';
-import IFriend                          from '../responses/ifriend';
-import IFriendRequest                   from '../responses/ifriendrequest';
-
 import fetch, { RequestInit, RequestMode, Response } from 'node-fetch';
 import FormData                         from 'form-data';
 
