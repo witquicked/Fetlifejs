@@ -1,0 +1,1 @@
+{"version":3,"file":"tokenrefreshrequest.js","sourceRoot":"","sources":["../../src/requests/tokenrefreshrequest.ts"],"names":[],"mappings":"","sourcesContent":["export type TokenRefreshRequest = {\r\n    refresh_token: string,\r\n    \r\n    redirect_uri: string,\r\n    \r\n    grant_type: string\r\n}"]}

@@ -1,4 +1,4 @@
-import { AuthBody } from './authbody';
+import { AuthBodyRequest } from './authbodyrequest';
 
 export type LoginRequest = {
     client_id: string,
@@ -7,5 +7,5 @@ export type LoginRequest = {
     
     redirect_uri: string | null,
     
-    authBody: AuthBody
+    authBody: AuthBodyRequest
 }

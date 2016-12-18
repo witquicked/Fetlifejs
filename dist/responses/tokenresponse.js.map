@@ -1,0 +1,1 @@
+{"version":3,"file":"tokenresponse.js","sourceRoot":"","sources":["../../src/responses/tokenresponse.ts"],"names":[],"mappings":"","sourcesContent":["export type TokenResponse = {\r\n    access_token: string,\r\n\r\n    token_type: string,\r\n\r\n    expires_in: number,\r\n\r\n    refresh_token: string,\r\n\r\n    created_at: number\r\n}"]}

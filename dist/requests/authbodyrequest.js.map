@@ -1,0 +1,1 @@
+{"version":3,"file":"authbodyrequest.js","sourceRoot":"","sources":["../../src/requests/authbodyrequest.ts"],"names":[],"mappings":"","sourcesContent":["export type AuthBodyRequest = {\r\n    grant_type: string;\r\n\r\n    username: string,\r\n\r\n    password: string,\r\n}"]}

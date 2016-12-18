@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/services/index.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAQ,kBAAkB,CAAC","sourcesContent":["export { IFetlifeService }  from './ifetlifeservice';\r\nexport { FetlifeService }   from './fetlifeservice';"]}

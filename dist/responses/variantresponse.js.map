@@ -1,0 +1,1 @@
+{"version":3,"file":"variantresponse.js","sourceRoot":"","sources":["../../src/responses/variantresponse.ts"],"names":[],"mappings":"","sourcesContent":["export type VariantResponse = {\r\n    medium: string;\r\n}"]}

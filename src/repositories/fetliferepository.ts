@@ -1,4 +1,4 @@
-import IFetlifeRepository               from './ifetliferepository';
+import { IFetlifeRepository }           from './ifetliferepository';
 import * as Constants                   from '../constants';
 
 import { 
@@ -9,9 +9,9 @@ import {
 }                                       from '../requests';
 
 import fetch, { RequestInit, RequestMode, Response } from 'node-fetch';
-import FormData                         from 'form-data';
+import * as FormData                    from 'form-data';
 
-export default class FetlifeRepository implements IFetlifeRepository {    
+export class FetlifeRepository implements IFetlifeRepository {    
     private clientId: string;
     private clientSecret: string;
 
@@ -54,8 +54,10 @@ export default class FetlifeRepository implements IFetlifeRepository {
         });
     }
 
-    public getConversations(tokenType: string, accessToken: string, order_by: string, limit: number, page: number): Promise<Response> {
-        return fetch(`${Constants.BASE_URL}/api/v2/me/conversations?order_by=${order_by}&limit=${limit}&page=${page}`, <RequestInit>{
+    public getConversations(tokenType: string, accessToken: string): Promise<Response>;
+    public getConversations(tokenType: string, accessToken: string, limit?: number | undefined, page?: number | undefined): Promise<Response>;
+    public getConversations(tokenType: string, accessToken: string, limit?: number | undefined, page?: number | undefined, orderBy?: string | undefined): Promise<Response> {
+        return fetch(`${Constants.BASE_URL}/api/v2/me/conversations?order_by=${orderBy}&limit=${limit}&page=${page}`, <RequestInit>{
             method: 'GET',
             headers: { Authorization: `${tokenType} ${accessToken}` }
         });

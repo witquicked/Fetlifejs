@@ -1,0 +1,1 @@
+{"version":3,"file":"ifetlifeservice.js","sourceRoot":"","sources":["../../src/services/ifetlifeservice.ts"],"names":[],"mappings":"","sourcesContent":["import {\r\n    MemberResponse,\r\n    TokenResponse\r\n}                           from '../responses';\r\n\r\nexport interface IFetlifeService {\r\n    login(username: string, password: string): Promise<TokenResponse>;\r\n}"]}

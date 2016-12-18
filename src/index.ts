@@ -1,1 +1,1 @@
-export * from './fetlifeservice';
+export * from './services';

@@ -1,0 +1,1 @@
+{"version":3,"file":"avatarresponse.js","sourceRoot":"","sources":["../../src/responses/avatarresponse.ts"],"names":[],"mappings":"","sourcesContent":["import { VariantResponse } from './variantresponse';\r\n\r\nexport type AvatarResponse = {\r\n    variants: VariantResponse\r\n}"]}

@@ -1,4 +1,4 @@
-export type TokenRefreshRequest {
+export type TokenRefreshRequest = {
     refresh_token: string,
     
     redirect_uri: string,

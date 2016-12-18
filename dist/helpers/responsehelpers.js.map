@@ -1,0 +1,1 @@
+{"version":3,"file":"responsehelpers.js","sourceRoot":"","sources":["../../src/helpers/responsehelpers.ts"],"names":[],"mappings":"AAEA,MAAM,oBAAoB,QAAkB;IACxC,MAAM,CAAC,QAAQ,CAAC,EAAE,CAAC;AACvB,CAAC","sourcesContent":["import { Response }     from 'node-fetch';\r\n\r\nexport function isSuccess(response: Response): boolean {\r\n    return response.ok;\r\n}"]}

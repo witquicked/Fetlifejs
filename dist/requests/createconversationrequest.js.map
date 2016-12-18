@@ -1,0 +1,1 @@
+{"version":3,"file":"createconversationrequest.js","sourceRoot":"","sources":["../../src/requests/createconversationrequest.ts"],"names":[],"mappings":"","sourcesContent":["export type CreateConversationRequest = {\r\n    user_id: string,\r\n\r\n    subject: string,\r\n\r\n    body: string\r\n}"]}
